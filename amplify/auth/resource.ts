@@ -23,14 +23,14 @@ export const auth = defineAuth({
         scopes: ['email'],
       },
       callbackUrls: [
-        'http://localhost:4200/',
+        'http://localhost:8101/',
         'https://www.badowltool.com',
-        'https://dev.dfer2cbwc2thd.amplifyapp.com/',
+        'https://dev.d14w5lfir87n91.amplifyapp.com/',
       ],
       logoutUrls: [
-        'http://localhost:4200/',
+        'http://localhost:8101/',
         'https://www.badowltool.com',
-        'https://dev.dfer2cbwc2thd.amplifyapp.com/',
+        'https://dev.d14w5lfir87n91.amplifyapp.com/',
       ],
     }
   },
