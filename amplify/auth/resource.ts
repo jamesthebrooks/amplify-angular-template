@@ -26,13 +26,17 @@ export const auth = defineAuth({
         'http://localhost:8101/',
         'https://www.badowltool.com',
         'https://dev.d14w5lfir87n91.amplifyapp.com/',
-        'https://main.d14w5lfir87n91.amplifyapp.com/'
+        'https://main.d14w5lfir87n91.amplifyapp.com/',
+        'https://dev.d3s4aytbb75ebg.amplifyapp.com/',
+        'https://main.d3s4aytbb75ebg.amplifyapp.com/'
       ],
       logoutUrls: [
         'http://localhost:8101/',
         'https://www.badowltool.com',
         'https://dev.d14w5lfir87n91.amplifyapp.com/',
-        'https://main.d14w5lfir87n91.amplifyapp.com/'
+        'https://main.d14w5lfir87n91.amplifyapp.com/',
+        'https://dev.d3s4aytbb75ebg.amplifyapp.com/',
+        'https://main.d3s4aytbb75ebg.amplifyapp.com/'
       ],
     }
   },
