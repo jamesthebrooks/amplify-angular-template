@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Finish Coverage Calculator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div #swiperContainer class="swiper-container finishes-slider">
+    <div class="swiper-wrapper">
+      <div *ngFor="let finish of finishes" class="swiper-slide">
+        <ion-img [src]="finish.src" [alt]="finish.name" class="slide-image"></ion-img>
+        <div class="ion-text-center">
+          <p>{{ finish.name }}</p>
+          <ion-button [href]="finish.link">Buy Now</ion-button>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+
+  <div class="input-container">
+    <ion-item>
+      <ion-label position="stacked">Dimensions</ion-label>
+      <div style="display: flex; gap: 10px;">
+        <ion-input type="number" [value]="length || ''" (input)="setLength($event)" placeholder="Length"></ion-input>
+        <ion-select interface="popover" [value]="lengthUnit" (ionChange)="setLengthUnit($event.detail.value)">
+          <ion-select-option *ngFor="let unit of dimensionUnits" [value]="unit">{{ unit }}</ion-select-option>
+        </ion-select>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div style="display: flex; gap: 10px;">
+        <ion-input type="number" [value]="width || ''" (input)="setWidth($event)" placeholder="Width"></ion-input>
+        <ion-select interface="popover" [value]="widthUnit" (ionChange)="setWidthUnit($event.detail.value)">
+          <ion-select-option *ngFor="let unit of dimensionUnits" [value]="unit">{{ unit }}</ion-select-option>
+        </ion-select>
+      </div>
+    </ion-item>
+
+    <ion-item *ngIf="isHeightRequired">
+      <div style="display: flex; gap: 10px;">
+        <ion-input type="number" [value]="height || ''" (input)="setHeight($event)" placeholder="Height"></ion-input>
+        <ion-select interface="popover" [value]="heightUnit" (ionChange)="setHeightUnit($event.detail.value)">
+          <ion-select-option *ngFor="let unit of dimensionUnits" [value]="unit">{{ unit }}</ion-select-option>
+        </ion-select>
+      </div>
+    </ion-item>
+
+    <h3>Result Units</h3>
+    <ion-item>
+      <div style="display: flex; gap: 10px;">
+        <div *ngIf="!isHeightRequired">
+          <ion-label position="stacked">Output Area Unit</ion-label>
+          <ion-select interface="popover" [value]="areaUnit" (ionChange)="setAreaUnit($event.detail.value)">
+            <ion-select-option *ngFor="let unit of areaUnits" [value]="unit">{{ unit }}</ion-select-option>
+          </ion-select>
+        </div>
+        <div>
+          <ion-item>
+            <ion-label position="stacked">Volume Unit</ion-label>
+            <ion-select interface="popover" [value]="volumeUnit" (ionChange)="setVolumeUnit($event.detail.value)">
+              <ion-select-option *ngFor="let unit of volumeUnits" [value]="unit">{{ unit }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </div>
+    </ion-item>
+
+  </div>
+
+  <ion-card *ngIf="requiredFinishMin === null">
+    <ion-card-content>
+      <p class="text-secondary">
+        Not sure how much finish you need for your project? Enter the length, width, and select
+        appropriate results units to estimate your needs.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="result-container" *ngIf="requiredFinishMin !== null">
+    <ion-card-content>
+      <p class="text-primary">
+        You need approximately
+        {{ requiredFinishMin.toFixed(2) }}
+        {{ volumeUnit }} of {{ selectedFinish.name }}
+        <span *ngIf="isHeightRequired">to fill the specified volume</span>
+        <span *ngIf="!isHeightRequired">to cover {{ area.toFixed(2) }} {{ areaUnit }}</span>.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card *ngIf="selectedFinish.specData">
+    <ion-card-header>
+      <ion-card-title>Specifications</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table>
+        <tr *ngFor="let key of getSpecDataKeys()">
+          <td><strong>{{ key }}</strong></td>
+          <td>{{ selectedFinish.specData[key] }}</td>
+        </tr>
+      </table>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

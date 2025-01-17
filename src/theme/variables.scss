@@ -1,0 +1,193 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+
+/* Light Theme: Nord */
+:root {
+
+  --ion-font-family: 'Poppins', sans-serif; /* Replace Roboto */
+
+  --ion-color-primary: #65B1C7;
+  --ion-color-primary-rgb: 101,177,199;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-shade: #599caf;
+  --ion-color-primary-tint: #74b9cd;
+
+  --ion-color-secondary: #fe8c19;
+  --ion-color-secondary-rgb: 254,140,25;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0,0,0;
+  --ion-color-secondary-shade: #e07b16;
+  --ion-color-secondary-tint: #fe9830;
+
+  --ion-color-tertiary: #CD65C8;
+  --ion-color-tertiary-rgb: 205,101,200;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0,0,0;
+  --ion-color-tertiary-shade: #b459b0;
+  --ion-color-tertiary-tint: #d274ce;
+
+  --ion-color-success: #2dd55b;
+  --ion-color-success-rgb: 45,213,91;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0,0,0;
+  --ion-color-success-shade: #28bb50;
+  --ion-color-success-tint: #42d96b;
+
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255,196,9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0,0,0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  --ion-color-danger: #c5000f;
+  --ion-color-danger-rgb: 197,0,15;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255,255,255;
+  --ion-color-danger-shade: #ad000d;
+  --ion-color-danger-tint: #cb1a27;
+
+  --ion-color-light: #f6f8fc;
+  --ion-color-light-rgb: 246,248,252;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0,0,0;
+  --ion-color-light-shade: #d8dade;
+  --ion-color-light-tint: #f7f9fc;
+
+  --ion-color-medium: #5f5f5f;
+  --ion-color-medium-rgb: 95,95,95;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255,255,255;
+  --ion-color-medium-shade: #545454;
+  --ion-color-medium-tint: #6f6f6f;
+
+  --ion-color-dark: #2f2f2f;
+  --ion-color-dark-rgb: 47,47,47;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255,255,255;
+  --ion-color-dark-shade: #292929;
+  --ion-color-dark-tint: #444444;
+}
+
+/* Dark Theme: Dracula with Maximum Contrast for Card Titles */
+body.dark {
+
+  --ion-background-color: #282a36; /* Dracula background */
+  --ion-text-color: #f8f8f2; /* Dracula foreground */
+  --icon-color: #fff; /* Dark mode icon color */
+
+  --ion-color-dark: #1e1f29; /* Dracula darkest shade */
+  --ion-color-dark-contrast: #f8f8f2;
+
+  /* Tabs Styling */
+  --ion-tab-bar-background: #21222c;
+  --ion-tab-bar-border-color: #44475a;
+  --ion-tab-bar-color: #bd93f9;
+  --ion-tab-bar-color-activated: #ff79c6;
+
+  /* Card Styling */
+  --ion-card-background: #21222c;
+  --ion-card-border-color: #44475a;
+  --ion-card-color: #f8f8f2;
+
+  /* Card Title Styling */
+  --ion-card-title-color: #ffffff; /* Pure white for maximum contrast */
+  --ion-card-title-font-weight: bold; /* Ensure bold for emphasis */
+  --ion-card-title-font-size: 1.4rem; /* Increase size for better visibility */
+  --ion-card-title-text-shadow: 1px 1px 2px #000000; /* Add subtle shadow for depth */
+
+  /* Button Styling */
+  --ion-button-background: #6272a4;
+  --ion-button-color: #f8f8f2;
+  --ion-button-background-hover: #515a89;
+
+  /* Input/Field Styling */
+  --ion-item-background: #21222c;
+  --ion-item-color: #f8f8f2;
+  --ion-item-border-color: #44475a;
+
+  ion-header, ion-toolbar {
+    --background: #21222c; /* Dark background for header and toolbar */
+    --color: #f8f8f2; /* Light text color */
+    --border-color: #44475a; /* Subtle border for header and toolbar */
+  }
+
+  ion-toolbar ion-title {
+    --color: #f8f8f2; /* Ensure the title text inherits dark mode color */
+  }
+
+  /* Optional: Styling for buttons in the header */
+  ion-toolbar ion-buttons ion-button {
+    --color: #f8f8f2; /* Button color in dark mode */
+  }
+
+  ion-toolbar ion-buttons ion-button:hover {
+    --background: #383a59; /* Slight hover effect for buttons */
+  }
+
+  /* Styling for ion-segment and ion-segment-button */
+  ion-segment {
+    --background: #21222c; /* Dark background for the segment */
+    --border-color: #44475a; /* Subtle border for separation */
+  }
+
+  ion-segment-button {
+    --color: #f8f8f2; /* Default text color for buttons */
+    --color-checked: #ff79c6; /* Text color for selected button */
+    --background: transparent; /* Background for unselected buttons */
+    --background-checked: #44475a; /* Background for selected button */
+    --border-color: #6272a4; /* Border for buttons */
+    --indicator-color: #ff79c6; /* Highlight color for the indicator */
+  }
+
+  /* Optional: Add hover and focus effects for better interactivity */
+  ion-segment-button:hover {
+    --background: #383a59; /* Slightly lighter background on hover */
+    --color: #ffffff; /* Brighter text color on hover */
+  }
+
+  ion-segment-button:focus {
+    --outline-color: #ff79c6; /* Highlighted outline for accessibility */
+  }
+}
+
+.text-primary {
+  color: var(--ion-color-primary);
+}
+
+.text-secondary {
+  font-size: 0.9rem;
+  color: var(--ion-color-secondary);
+}
+
+.text-tertiary {
+  color: var(--ion-color-tertiary);
+}
+
+.text-success {
+  color: var(--ion-color-success);
+}
+
+.text-warning {
+  color: var(--ion-color-warning);
+}
+
+.text-danger {
+  color: var(--ion-color-danger);
+}
+
+.text-light {
+  color: var(--ion-color-light);
+}
+
+.text-medium {
+  color: var(--ion-color-medium);
+}
+
+.text-dark {
+  color: var(--ion-color-dark);
+}
+

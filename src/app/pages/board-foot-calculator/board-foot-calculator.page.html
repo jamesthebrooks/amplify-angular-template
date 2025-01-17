@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Board Foot Calculator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p class="text-secondary">A board foot is 12" x 12" x 1" of volume. Use this calculator to make figuring it out quick
+    and easy.</p>
+
+  <ion-item>
+    <ion-label position="fixed">Length</ion-label>
+    <ion-input
+      type="number"
+      [(ngModel)]="length"
+      placeholder="0&quot;"
+      (ionChange)="calculateBoardFeet()"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Width</ion-label>
+    <ion-input
+      type="number"
+      [(ngModel)]="width"
+      placeholder="0&quot;"
+      (ionChange)="calculateBoardFeet()"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Thickness</ion-label>
+    <ion-input
+      type="number"
+      [(ngModel)]="thickness"
+      placeholder="0&quot;"
+      (ionChange)="calculateBoardFeet()"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">$/bf USD</ion-label>
+    <ion-input
+      type="number"
+      [(ngModel)]="pricePerBoardFoot"
+      placeholder="0.00"
+      (ionChange)="calculateBoardFeet()"
+      (ionFocus)="clearPrice()"
+      (ionBlur)="restorePrice()"
+    ></ion-input>
+  </ion-item>
+
+  <ion-card *ngIf="boardFeet > 0">
+    <ion-card-header>
+      <ion-card-title>Results</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Board Feet: {{ boardFeet.toFixed(2) }}</p>
+      <p *ngIf="totalPrice !== 0">Total Price: ${{ totalPrice.toFixed(2) }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <section class="svg-container">
+    <p class="handwritten text-primary">a single board foot</p>
+    <ion-img src="/assets/images/board-foot.png"></ion-img>
+  </section>
+
+</ion-content>

@@ -1,10 +1,81 @@
-<amplify-authenticator>
-  <ng-template
-    amplifySlot="authenticated"
-    let-user="user"
-    let-signOut="signOut"
-  >
-    <app-todos></app-todos>
-    <button (click)="signOut()">Sign Out</button>
-  </ng-template>
-</amplify-authenticator>
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="handwritten text-primary">{{ appName | uppercase }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-menu contentId="main-content" side="end">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item (click)="closeMenu()" routerLink="/home">Home</ion-item>
+        <ng-container *ngIf="user">
+          <ion-item (click)="closeMenu()" routerLink="/units-converter">Units Converter</ion-item>
+          <ion-item (click)="closeMenu()" routerLink="/fractional-inch-calculator">Fractional Inch Calculator
+          </ion-item>
+          <ion-item (click)="closeMenu()" routerLink="/board-foot-calculator">Board Foot Calculator</ion-item>
+          <ion-item (click)="closeMenu()" routerLink="/radius-limit">Bandsaw Radius Finder</ion-item>
+          <ion-item (click)="closeMenu()" routerLink="/triangle-calculator">Triangle Calculator</ion-item>
+          <ion-item (click)="closeMenu()" routerLink="/drill-bit-calculator">Tap Drill Selector</ion-item>
+          <ion-item (click)="closeMenu()" routerLink="/finish-coverage-calculator">Finish Coverage Calculator
+          </ion-item>
+        </ng-container>
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="owl-container">
+            <ion-img class="owl-logo light" src="assets/images/illustration/NWS_Light.png"
+                     alt="Bad Owl Tool Logo"></ion-img>
+            <ion-img class="owl-logo dark" src="assets/images/illustration/NWS_Dark.png"
+                     alt="Bad Owl Tool Logo"></ion-img>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="ion-text-center">
+              Proudly brought to you by<br/><a (click)="closeMenu()"
+                                               href="https://www.norfolkwoodshop.com">Norfolk Wood
+              Shop</a>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+    <ion-footer>
+
+      <amplify-authenticator [loginMechanisms]="[]"
+                             [socialProviders]="['google']"
+                             [hideSignUp]="true">
+        <ng-template
+          amplifySlot="authenticated"
+          let-user="user"
+          let-signOut="signOut"
+        >
+          <h2>Welcome, {{ user.username }}!</h2>
+          <button (click)="signOut()">Sign Out</button>
+        </ng-template>
+      </amplify-authenticator>
+
+      <ion-item (click)="closeMenu()" routerLink="/user-preferences" *ngIf="user">
+        <ion-icon slot="start" name="user-preferences"></ion-icon>
+        My Preferences
+      </ion-item>
+    </ion-footer>
+  </ion-menu>
+
+  <ion-content>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-content>
+
+  <!--<app-toast-container></app-toast-container>-->
+</ion-app>

@@ -1,0 +1,32 @@
+.finishes-slider {
+  margin: 0 0 4rem;
+
+  .swiper-scrollbar {
+    position: absolute;
+    bottom: -2rem;
+  }
+
+  /* Style Swiper Buttons */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: var(--ion-color-secondary);
+    transition: transform 0.3s, background-color 0.3s;
+  }
+
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+
+
+  /* Style Swiper Scrollbar */
+  .swiper-scrollbar {
+    background: rgba(#65B1C7, 0.75);
+    height: 8px;
+    border-radius: 4px;
+  }
+}
+
+.input-container {
+  margin: 1rem;
+}

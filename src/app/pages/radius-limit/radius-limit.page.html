@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Bandsaw Radius Finder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <p class="text-secondary">
+      Unsure of the minimum radius your blade can cut? Blade geometry matters,
+      but we’ve made it easy with this quick lookup.
+    </p>
+  </ion-item>
+
+  <!-- Unit Selection -->
+  <ion-item>
+    <ion-label>Unit</ion-label>
+    <ion-select [(ngModel)]="unit" (ionChange)="onUnitChange()" interface="popover">
+      <ion-select-option value="in">Inches</ion-select-option>
+      <ion-select-option value="mm">Millimeters</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Blade Width Selection -->
+  <ion-item>
+    <ion-label>Blade Width ({{ unit === 'in' ? 'inches' : 'mm' }})</ion-label>
+    <ion-select [(ngModel)]="bladeWidth" (ionChange)="onBladeWidthChange($event.detail.value)" interface="popover">
+      <ion-select-option *ngFor="let width of getUniqueBladeWidths()" [value]="width">
+        {{ getBladeWidthDisplay(width) }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Tooth Pitch Selection -->
+  <ion-item *ngIf="bladeWidth !== null && getFilteredToothPitchOptions().length > 0">
+    <ion-label>Tooth Pitch</ion-label>
+    <ion-select [(ngModel)]="toothPitch" (ionChange)="onToothPitchChange($event.detail.value)" interface="popover">
+      <ion-select-option
+        *ngFor="let pitch of getFilteredToothPitchOptions()"
+        [value]="pitch"
+      >
+        {{ pitch.pitch }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Results -->
+  <ion-card *ngIf="minimumCircleDiameter !== null && minimumCircleRadius !== null">
+    <ion-card-header>
+      <ion-card-title>Results</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Minimum Radius: {{ minimumCircleRadius.toFixed(2) }} {{ unit }}</p>
+      <p>Minimum Circle Diameter: {{ minimumCircleDiameter.toFixed(2) }} {{ unit }}</p>
+      <p>Details: {{ rationale }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

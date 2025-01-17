@@ -1,0 +1,124 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Units Converter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment scrollable (ionChange)="setConversionType($event)" [value]="conversionType">
+    <ion-segment-button value="length">Length</ion-segment-button>
+    <ion-segment-button value="area">Area</ion-segment-button>
+    <ion-segment-button value="solidVolume">Volume</ion-segment-button>
+    <ion-segment-button value="liquidVolume">Liquid Volume</ion-segment-button>
+    <ion-segment-button value="weight">Weight</ion-segment-button>
+    <ion-segment-button value="speed">Speed</ion-segment-button>
+  </ion-segment>
+
+  <!-- Input Value 1 -->
+  <ion-item>
+    <div style="display: flex; gap: 10px;">
+      <ion-input
+        type="number"
+        [value]="inputValues.value1"
+        (ionInput)="updateValue('value1', $event)"
+        placeholder="{{ conversionLabels[conversionType]?.value1 }}"
+      ></ion-input>
+      <ion-select
+        [value]="inputValues.unit1"
+        interface="popover"
+        (ionChange)="updateUnit('unit1', $event)"
+      >
+        <ion-select-option
+          *ngFor="let unit of getInputUnits('unit1')"
+          [value]="unit"
+        >
+          {{ unit }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+  </ion-item>
+
+  <!-- Input Value 2 (Width) -->
+  <ion-item *ngIf="conversionType === 'area' || conversionType === 'solidVolume'">
+    <div style="display: flex; gap: 10px;">
+      <ion-input
+        type="number"
+        [value]="inputValues.value2"
+        (ionInput)="updateValue('value2', $event)"
+        placeholder="{{ conversionLabels[conversionType]?.value2 }}"
+      ></ion-input>
+      <ion-select
+        [value]="inputValues.unit2"
+        interface="popover"
+        (ionChange)="updateUnit('unit2', $event)"
+      >
+        <ion-select-option
+          *ngFor="let unit of getInputUnits('unit2')"
+          [value]="unit"
+        >
+          {{ unit }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+  </ion-item>
+
+  <!-- Input Value 3 (Height) -->
+  <ion-item *ngIf="conversionType === 'solidVolume'">
+    <div style="display: flex; gap: 10px;">
+      <ion-input
+        type="number"
+        [value]="inputValues.value3"
+        (ionInput)="updateValue('value3', $event)"
+        placeholder="{{ conversionLabels[conversionType]?.value3 }}"
+      ></ion-input>
+      <ion-select
+        [value]="inputValues.unit3"
+        interface="popover"
+        (ionChange)="updateUnit('unit3', $event)"
+      >
+        <ion-select-option
+          *ngFor="let unit of getInputUnits('unit3')"
+          [value]="unit"
+        >
+          {{ unit }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+  </ion-item>
+
+  <!-- Converted Value and Result Unit Selection -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ conversionLabels[conversionType]?.result }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <div style="display: flex; gap: 10px;">
+          <ion-input readonly [value]="resultValue"></ion-input>
+          <ion-select
+            [value]="resultUnit"
+            interface="popover"
+            (ionChange)="updateResultUnit($event)"
+          >
+            <ion-select-option
+              *ngFor="let unit of availableUnits[conversionType]?.metric.concat(availableUnits[conversionType]?.imperial)"
+              [value]="unit"
+            >
+              {{ unit }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Fractional Component for Length Conversion -->
+  <ion-card *ngIf="conversionType === 'length'">
+    <ion-card-content>
+      <app-fractional-inch-calculator
+        [showInput]="false"
+        [inputValue]="getResultInInches()"
+      ></app-fractional-inch-calculator>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

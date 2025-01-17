@@ -1,0 +1,16 @@
+.owl-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.owl-logo {
+  width: 160px;
+  height: 160px;
+}
+
+ion-title {
+  font-size: 2rem;
+}

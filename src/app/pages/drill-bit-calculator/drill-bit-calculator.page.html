@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tap Drill Selector</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="text-secondary">Know your tap size? Here's a simple way to find the right drill bit you’ll need.</p>
+
+  <ion-item>
+    <ion-label position="stacked">Units</ion-label>
+    <ion-segment [(ngModel)]="selectedSystem" (ionChange)="resetValues()">
+      <ion-segment-button value="imperial">Imperial</ion-segment-button>
+      <ion-segment-button value="metric">Metric</ion-segment-button>
+    </ion-segment>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Select Tap Size</ion-label>
+    <ion-select [(ngModel)]="selectedTapSize" (ionChange)="calculateDrillBitSize()">
+      <ion-select-option *ngFor="let size of getFilteredTapSizes()" [value]="size.tapSize">
+        {{ size.tapSize }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <p class="result">{{ result }}</p>
+</ion-content>

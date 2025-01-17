@@ -1,0 +1,68 @@
+.owl-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40%;
+}
+
+.owl-logo {
+  width: 100%;
+  height: auto;
+  max-width: 140px;
+}
+
+.level-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60%;
+}
+
+.level-art {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.bubble {
+  transition: cx 0.1s ease-out, cy 0.1s ease-out, rx 0.1s ease-out, ry 0.1s ease-out;
+  stroke: #CDF518;
+  stroke-width: 2;
+  fill: transparent;
+}
+
+.bullseye-art {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.angle-display {
+  margin-top: 1rem;
+  text-align: center;
+
+  .angle-value {
+    display: inline-block;
+    width: 4.25rem;
+    text-align: right;
+  }
+}
+
+.control-bar {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.permission-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+

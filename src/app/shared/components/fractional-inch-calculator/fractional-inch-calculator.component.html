@@ -1,0 +1,42 @@
+<ion-card>
+  <ion-card-content>
+    <ion-item *ngIf="showInput">
+      <ion-label position="floating">Enter Decimal Inches</ion-label>
+      <ion-input
+        type="number"
+        [value]="inputValue"
+        (ionFocus)="clearInput()"
+        (ionBlur)="restoreDefaultValue()"
+        (ionInput)="onInputChange($event)"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <div class="fraction-result">
+        <span *ngIf="calculationResult.wholeNumber !== '0'" class="whole-number">
+          {{ calculationResult.wholeNumber }}
+          <ng-container *ngIf="calculationResult.numerator !== '0'">+</ng-container>
+        </span>
+        <span *ngIf="calculationResult.numerator !== '0'" class="fraction">
+              <span class="numerator">{{ calculationResult.numerator }}</span>
+              <span class="denominator">{{ calculationResult.denominator }}</span>
+            </span>
+        <span
+          [style.visibility]="calculationResult.numerator === '0' && calculationResult.wholeNumber === '0' ? 'hidden' : 'visible'"
+          class="inch-symbol"
+        >"</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label class="denominator-slider-label">Denominator:</ion-label>
+      <ion-range
+        min="0"
+        [max]="denominators.length - 1"
+        step="1"
+        [value]="selectedIndex"
+        (ionInput)="onRangeInput($event)">
+        <ion-label slot="start">2</ion-label>
+        <ion-label slot="end">1024</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,81 @@
+html,
+body {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* General Global Styles */
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+@media (orientation: landscape) {
+  .ion-page {
+    width: 100vh;
+    height: 100vw;
+  }
+}
+
+// Hide the rotation notice in portrait mode
+@media (orientation: portrait) {
+  .rotate-notice {
+    display: none;
+  }
+}
+
+.owl-logo {
+  &.light {
+    display: inline-block;
+  }
+  &.dark {
+    display: none;
+  }
+}
+
+ion-icon {
+  color: var(--icon-color);
+}
+
+/* Dark Theme-Specific Styles */
+body.dark {
+
+  .owl-logo {
+    &.light {
+      display: none;
+    }
+    &.dark {
+      display: inline-block;
+    }
+  }
+
+  ion-card-title {
+    color: #ffffff; /* Pure white for contrast */
+    font-weight: bold; /* Make it stand out */
+    font-size: 1.4rem; /* Larger font for readability */
+    text-shadow: 1px 1px 2px #000000; /* Subtle shadow for clarity */
+  }
+
+  ion-card {
+    background: #21222c; /* Ensure consistent dark card background */
+    border: 1px solid #44475a; /* Define a subtle border for clarity */
+    color: #f8f8f2; /* Default card text color */
+  }
+}
+
+/* Global styles for ion-label */
+ion-label {
+  color: #81a1c1; /* Medium-light blue */
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.75rem;
+}
+
+table {
+  th, td {
+    padding: 0.25rem 0.5rem;
+  }
+}

@@ -1,0 +1,82 @@
+.fraction-result {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the result */
+  color: var(--ion-color-primary);
+  gap: 0.5rem; /* Consistent spacing between elements */
+  width: 100%;
+
+  .fraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .numerator,
+    .denominator {
+      font-family: 'Amatic SC', cursive;
+      font-size: 1.35rem;
+      color: var(--ion-color-primary); /* Ensure consistency with the primary theme color */
+    }
+
+    .denominator {
+      border-top: 2px solid var(--ion-color-primary);
+      width: 100%; /* Ensure the line spans the fraction width */
+      text-align: center; /* Center the text for clarity */
+    }
+  }
+}
+
+.denominator-slider-label {
+  margin-right: 1rem;
+}
+
+.input-item {
+  margin: 0.5rem 0;
+
+  ion-label {
+    font-size: 1rem;
+    color: var(--ion-color-dark);
+    font-weight: bold; /* Ensure labels are easily visible */
+  }
+
+  ion-input {
+    font-size: 1.5rem;
+    color: var(--ion-color-dark); /* Match the input text color to the label */
+    border: 1px solid var(--ion-color-medium); /* Highlight the input field for better visibility */
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+}
+
+.range-item {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+
+  ion-label {
+    font-size: 0.9rem; /* Reduced font size for readability */
+    font-weight: bold;
+    white-space: nowrap; /* Prevents text wrapping */
+    margin-right: 1rem;
+    color: var(--ion-color-secondary); /* Add a secondary color for distinction */
+  }
+
+  ion-range {
+    flex: 1; /* Allows the slider to take up remaining space */
+    --bar-background: var(--ion-color-primary); /* Customize the range bar color */
+    --knob-background: var(--ion-color-light); /* Add a light knob color for contrast */
+  }
+}
+
+.whole-number,
+.inch-symbol {
+  font-family: 'Amatic SC', cursive;
+  font-size: 3rem;
+  color: var(--ion-color-tertiary); /* Use a tertiary color to distinguish the result */
+}
+
+
+ion-label {
+  margin-bottom: 1rem !important;
+}
+
