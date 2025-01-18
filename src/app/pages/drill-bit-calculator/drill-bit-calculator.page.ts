@@ -25,7 +25,7 @@ export class DrillBitCalculatorPage implements OnInit {
   }
 
   ngOnInit(): void {
-    const user = this.userService.getUser();
+    const user = this.userService.user$.getValue();
     if (user && user.unitPreference) {
       this.selectedSystem = user.unitPreference; // Assume `unitPreference` is 'imperial' or 'metric'
     }

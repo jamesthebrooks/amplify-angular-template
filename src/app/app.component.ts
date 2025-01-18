@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {MenuController, Platform} from "@ionic/angular";
 import {UserService} from "./services/user/user.service";
 import {TitleService} from "./services/title/title.service";
@@ -10,6 +10,7 @@ import {AuthenticatorService} from "@aws-amplify/ui-angular";
 import {Amplify} from "aws-amplify";
 import {ResourcesConfig} from "@aws-amplify/core";
 import {AmplifyOutputs} from "@aws-amplify/core/dist/esm/libraryUtils";
+import {Subscription} from "rxjs";
 
 registerSwiper();
 
@@ -23,9 +24,11 @@ outputs = require("../../amplify_outputs.json");
   styleUrls: ['app.component.scss'],
   standalone: false,
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
-  user = this.userService.getUser(); // Get the current user on component load
+  private userSubscription?: Subscription;
+  public user: any = null;
+
   appName = environment.appName;
 
   constructor(
@@ -35,8 +38,7 @@ export class AppComponent implements OnInit {
     private titleService: TitleService,
     private themeService: ThemeService,
     private menuCtrl: MenuController,
-    private renderer: Renderer2,
-    public authenticator: AuthenticatorService
+    private renderer: Renderer2
   ) {
     this.initializeApp();
     Amplify.configure(outputs, {ssr: true});
@@ -57,6 +59,16 @@ export class AppComponent implements OnInit {
     applyTheme(prefersDark.matches);
     // Listen for changes
     prefersDark.addEventListener('change', event => applyTheme(event.matches));
+
+    this.userService.loadUser().then(); // Ensure user is loaded on app start
+
+    this.userSubscription = this.userService.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  ngOnDestroy() {
+    this.userSubscription?.unsubscribe();
   }
 
   initializeApp() {
@@ -98,6 +110,15 @@ export class AppComponent implements OnInit {
       this.renderer.removeStyle(body, 'top');
       this.renderer.removeStyle(body, 'left');
     }
+  }
+
+  setUser(user: any) {
+    this.userService.setUser(user);
+  }
+
+  logout(signOutFn: Function) {
+    signOutFn(); // Use built-in signOut function from Amplify UI
+    this.userService.clearUser();
   }
 
 }

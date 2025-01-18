@@ -62,7 +62,8 @@
           let-signOut="signOut"
         >
           <h2>Welcome, {{ user.username }}!</h2>
-          <button (click)="signOut()">Sign Out</button>
+          <button (click)="setUser(user)">Set User</button>
+          <button (click)="logout(signOut)">Sign Out</button>
         </ng-template>
       </amplify-authenticator>
 
@@ -77,5 +78,5 @@
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-content>
 
-  <!--<app-toast-container></app-toast-container>-->
+  <ion-toast></ion-toast>
 </ion-app>
